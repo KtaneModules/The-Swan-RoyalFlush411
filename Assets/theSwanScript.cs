@@ -44,6 +44,7 @@ public class theSwanScript : MonoBehaviour
 		Coroutine timerCoroutine;
 		Coroutine shuffleCoroutine;
 		Coroutine alarmCoroutine;
+		Coroutine wordsCoroutine;
 
 		//Timer
 		public TextMesh digit1;
@@ -280,6 +281,7 @@ public class theSwanScript : MonoBehaviour
 										StartCoroutine(systemShuffle3());
 										StartCoroutine(systemShuffle4());
 										StartCoroutine(systemShuffleDone());
+										wordsCoroutine = StartCoroutine(systemFailureWords());
 										yield return new WaitUntil(() => shuffleComplete == true);
 										timeUpCounter ++;
 										shuffleComplete = false;
@@ -323,6 +325,50 @@ public class theSwanScript : MonoBehaviour
 						}
 
 				}
+		}
+
+		IEnumerator systemFailureWords()
+		{
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: S";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: Sy";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: Sys";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: Syst";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: Syste";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System F";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System Fa";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System Fai";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System Fail";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System Failu";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System Failur";
+				cursorText.text = computerText + "▐";
+				yield return new WaitForSeconds(0.1f);
+				computerText = ">: System Failure";
+				cursorText.text = computerText + "▐";
+				StopCoroutine(wordsCoroutine);
 		}
 
 		//Cursor blink
