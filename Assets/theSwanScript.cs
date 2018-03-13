@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using theSwan;
 
@@ -936,4 +937,48 @@ public class theSwanScript : MonoBehaviour
 						Debug.LogFormat("[The Swan #{0}] Exception 2 applies. Enter 77.", moduleId);
 				}
 		}
+
+    private string TwitchHelpMessage = "Execute the command with !{0} execute 5 12 2 7 9 4. Get the actual time remaining with !{0} time. (Buttons are in reading order from 1-6 top row, 7-12 bottom row.)";
+    private IEnumerator ProcessTwitchCommand(string command)
+    {
+        List<KMSelectable> buttons = new List<KMSelectable>();
+        string[] split = command.ToLowerInvariant().Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+        if (Regex.IsMatch(command,"^(submit|execute) [0-9 ]+$",RegexOptions.CultureInvariant | RegexOptions.IgnoreCase))
+        {
+            int i;
+            if (split.Skip(1).Any(x => !int.TryParse(x, out i) || i < 1 || i > 12)) yield break;
+            foreach (int input in split.Skip(1).Select(int.Parse))
+            {
+                switch (input)
+                {
+                    case 1: buttons.Add(button0); break;
+                    case 2: buttons.Add(button1); break;
+                    case 3: buttons.Add(button2); break;
+                    case 4: buttons.Add(button3); break;
+                    case 5: buttons.Add(button4); break;
+                    case 6: buttons.Add(button5); break;
+                    case 7: buttons.Add(button6); break;
+                    case 8: buttons.Add(button7); break;
+                    case 9: buttons.Add(button8); break;
+                    case 10: buttons.Add(button9); break;
+                    case 11: buttons.Add(button10); break;
+                    case 12: buttons.Add(button11); break;
+                    default: yield break;
+                }
+            }
+            yield return null;
+            foreach (KMSelectable button in buttons)
+            {
+                button.OnInteract();
+                yield return new WaitForSeconds(0.1f);
+            }
+            execute.OnInteract();
+            yield return new WaitForSeconds(0.1f);
+        }
+        else if (split[0].Equals("time"))
+        {
+            yield return null;
+            yield return string.Format("sendtochat The time remaining is {0}{1} seconds.", digit3Time, digit4Time);
+        }
+    }
 }
