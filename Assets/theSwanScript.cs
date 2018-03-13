@@ -713,7 +713,7 @@ public class theSwanScript : MonoBehaviour
 				keyboardLock = true;
 				yield return new WaitForSeconds(0.05f);
 				StopCoroutine(timerCoroutine);
-				StopCoroutine(alarmCoroutine);
+                if(alarmCoroutine != null) StopCoroutine(alarmCoroutine);
 				digit1.text = "0";
 				digit2.text = "0";
 				digit3.text = "0";
@@ -937,6 +937,14 @@ public class theSwanScript : MonoBehaviour
 						Debug.LogFormat("[The Swan #{0}] Exception 2 applies. Enter 77.", moduleId);
 				}
 		}
+
+    void TwitchHandleForcedSolve()
+    {
+        //For cases where Twitch plays admins do !<id> solve on the module.
+        if (solved) return;
+        systemResetCounter = -1;  //Just in case souvenir asks how many resets in the future. Set to zero for this case.
+        StartCoroutine(failsafe());
+    }
 
     private string TwitchHelpMessage = "Execute the command with !{0} execute 5 12 2 7 9 4. Get the actual time remaining with !{0} time. (Buttons are in reading order from 1-6 top row, 7-12 bottom row.)";
     private IEnumerator ProcessTwitchCommand(string command)
