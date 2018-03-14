@@ -89,6 +89,7 @@ public class theSwanScript : MonoBehaviour
 		bool solveLogged = false;
 		int systemResetCounter = 0;
 		bool solved = false;
+        string[] ignoredModules = { "Souvenir", "Forget Me Not", "Turn The Key", "The Swan" };
 
 		//Logging
 		static int moduleIdCounter = 1;
@@ -116,7 +117,7 @@ public class theSwanScript : MonoBehaviour
 
 		void Start()
 		{
-				allModuleCount = Bomb.GetModuleNames().Count;
+				allModuleCount = Bomb.GetModuleNames().Count(x => !ignoredModules.Contains(x));
 				if (allModuleCount == 0)
 				{
 						allModuleCount = 1;
@@ -137,7 +138,7 @@ public class theSwanScript : MonoBehaviour
 
 		void Update()
 		{
-				allSolvedModules = Bomb.GetSolvedModuleNames().Count;
+				allSolvedModules = Bomb.GetSolvedModuleNames().Count(x => !ignoredModules.Contains(x));
 				if (beepReady == true && digit3Time == 4 && digit4Time == 2)
 				{
 				alarmCoroutine = StartCoroutine(alarmChecker());
