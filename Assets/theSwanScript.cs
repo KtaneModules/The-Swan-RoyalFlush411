@@ -151,7 +151,7 @@ public class theSwanScript : MonoBehaviour
 				}
 				timeRemaining = Bomb.GetTime();
 
-				if (timeRemaining < 180 && timeOut == false && digit3Time > 4 && digit3Time < 10 && readyToSolve == false)
+				if (TwitchZenMode == false && timeRemaining < 180 && timeOut == false && digit3Time > 4 && digit3Time < 10 && readyToSolve == false)
 				{
 						readyToSolve = true;
 						Debug.LogFormat("[The Swan #{0}] Ready to solve!", moduleId);
@@ -946,6 +946,7 @@ public class theSwanScript : MonoBehaviour
         StartCoroutine(failsafe());
     }
 
+    private bool TwitchZenMode = false;
     private string TwitchHelpMessage = "Execute the command with !{0} execute 5 12 2 7 9 4. Get the actual time remaining with !{0} time. (Buttons are in reading order from 1-6 top row, 7-12 bottom row.)";
     private IEnumerator ProcessTwitchCommand(string command)
     {
