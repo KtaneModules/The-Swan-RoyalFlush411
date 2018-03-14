@@ -604,7 +604,7 @@ public class theSwanScript : MonoBehaviour
 
 				}
 				StopCoroutine(timerCoroutine);
-				StopCoroutine(alarmCoroutine);
+				if(alarmCoroutine != null) StopCoroutine(alarmCoroutine);
 				digit1Rend.enabled = true;
 				digit2Rend.enabled = true;
 				digit3Rend.enabled = true;
