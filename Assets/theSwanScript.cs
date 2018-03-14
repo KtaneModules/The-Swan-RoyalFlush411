@@ -889,7 +889,7 @@ public class theSwanScript : MonoBehaviour
 				{
 						StartCoroutine(failsafe());
 				}
-				else if (computerText == ">: 77" && systemResetCounter >= 25)
+				else if (computerText == ">: 77" && systemResetCounter >= 25 && readyToSolve)
 				{
 						StartCoroutine(failsafe());
 				}
