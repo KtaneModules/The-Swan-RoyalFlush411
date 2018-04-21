@@ -982,6 +982,8 @@ public class theSwanScript : MonoBehaviour
                 yield return new WaitForSeconds(0.1f);
             }
             execute.OnInteract();
+            if (solved)
+                yield return "solve";
             yield return new WaitForSeconds(0.1f);
         }
         else if (split[0].Equals("time"))
