@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: theSwan
   title: The Swan
-  description: "The Swan 1.21\nEvery 108 seconds, the button must be pushed\u2026\n\nModule
+  description: "The Swan 1.22\nEvery 108 seconds, the button must be pushed\u2026\n\nModule
     ID: theSwan\n\nCreated by: Royal_Flu$h\nTwitchPlays implemented by: CaitSith2\n\nThanks
     to AshTheBash and Skyeward for their support and ideas.\n\nManual available here:
     https://ktane.timwi.de/HTML/The%20Swan.html"
-  version: 1.21
+  version: 1.22
   outputFolder: build
   previewImage: {fileID: 2800000, guid: cc32e32c2fe57442ea6cd1d7d444b0bd, type: 3}
