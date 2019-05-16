@@ -731,6 +731,7 @@ public class theSwanScript : MonoBehaviour
     //Buttons
     public void keyPress(KMSelectable buttonName)
     {
+        GetComponent<KMSelectable>().AddInteractionPunch(0.5f);
         Audio.PlaySoundAtTransform("keyPress", transform);
         if (computerText.Length < 19)
         {
@@ -854,6 +855,7 @@ public class theSwanScript : MonoBehaviour
 
     public void onExecute()
     {
+        GetComponent<KMSelectable>().AddInteractionPunch();
         Audio.PlaySoundAtTransform("keyPress", transform);
         if (executeLock == true)
         {
