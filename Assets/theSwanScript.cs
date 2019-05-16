@@ -10,7 +10,8 @@ public class theSwanScript : MonoBehaviour
     //Bomb info
     public KMBombInfo Bomb;
     public KMAudio Audio;
-    KMBombModule BombModule;
+    public KMBombModule BombModule;
+    public KMBossModule BossModule;
 
     //Buttons
     public KMSelectable execute;
@@ -88,7 +89,8 @@ public class theSwanScript : MonoBehaviour
     bool solveLogged = false;
     int systemResetCounter = 0;
     bool solved = false;
-    string[] ignoredModules = { "Souvenir", "Forget Me Not", "Turn The Key", "The Swan" };
+    static readonly string[] defaultIgnoredModules = { "Souvenir", "Forget Me Not", "Forget This", "Forget Everything", "The Time Keeper", "Timing is Everything", "Turn The Key", "The Swan", "Hogwarts", "Divided Squares", "Alchemy", "Purgatory" };
+    string[] ignoredModules;
 
     //Logging
     static int moduleIdCounter = 1;
@@ -97,6 +99,8 @@ public class theSwanScript : MonoBehaviour
     //Set-up
     void Awake()
     {
+        ignoredModules = BossModule.GetIgnoredModules(BombModule, defaultIgnoredModules);
+
         moduleId = moduleIdCounter++;
         GetComponent<KMBombModule>().OnActivate += OnActivate;
         execute.OnInteract += delegate () { onExecute(); return false; };
